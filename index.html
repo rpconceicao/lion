@@ -740,7 +740,6 @@ const homeJournal = () => {
       <ul class="j-list">${rest.map(a => `<li><a class="j-row" href="#/journal/${a.slug}">
         <span class="txt"><span class="kicker">${esc(a.cat)}</span><span class="c-title">${esc(a.title)}</span><span class="meta">${esc(a.date)}</span></span>
         ${img(a.img, "", "", 400)}</a></li>`).join("")}</ul>
-      <a class="btn btn-line" href="#/journal" style="margin-top:32px">View all articles</a>
     </div>
   </div>`;
 };
