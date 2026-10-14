@@ -334,6 +334,10 @@ body.locked > :not(.gate):not(script){display:none !important}
 .gate .shake{animation:shake .35s}
 @keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 @media (prefers-reduced-motion:reduce){ .gate .shake{animation:none} }
+
+/* consent checkbox: keep it out of the text-field styles and align it with the first line of its label */
+.check{align-items:flex-start !important}
+.check input[type="checkbox"]{flex:0 0 18px;width:18px !important;height:18px !important;min-height:0 !important;padding:0 !important;margin:calc((1.6em - 18px) / 2) 0 0 !important;border:0 !important;border-radius:4px;background:none !important;box-shadow:none !important;font-size:inherit}
 </style>
 </head>
 <body class="locked">
