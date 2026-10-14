@@ -126,8 +126,13 @@ button{font-family:inherit}
 
 /* grids & cards */
 .grid{display:grid;gap:56px 24px;list-style:none;margin:0;padding:0}
-.g-talent{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
-.g-3{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.g-talent{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1024px){ .g-talent,.g-4{grid-template-columns:repeat(2,minmax(0,1fr))} .g-3{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:860px){ .g-3.trio{grid-template-columns:1fr} }
+@media (max-width:600px){ .g-3,.g-4{grid-template-columns:1fr} .g-talent{gap:40px 16px} }
+@media (max-width:420px){ .g-talent{grid-template-columns:1fr} }
 .g-2{grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr));gap:80px 24px}
 .card{display:flex;flex-direction:column;gap:16px;text-decoration:none}
 .card .ph{overflow:hidden}
@@ -141,6 +146,22 @@ button{font-family:inherit}
 .c-title{font-family:var(--serif);font-size:26px;line-height:1.25;color:var(--paper)}
 .c-title.lg{font-size:32px;line-height:1.2}
 .c-sum{font-size:15px;line-height:1.7;color:var(--ash)}
+
+/* home journal: one lead story + an index of the next three */
+.j-home{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px clamp(40px,5vw,80px);align-items:start}
+.j-lead .c-title{font-size:clamp(30px,3vw,44px);line-height:1.12}
+.j-lead .c-sum{font-size:16px;max-width:34em}
+.j-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-bottom:1px solid var(--rule)}
+.j-list li{border-top:1px solid var(--rule)}
+.j-row{display:grid;grid-template-columns:minmax(0,1fr) 112px;gap:24px;align-items:start;padding:28px 0;text-decoration:none}
+.j-row img{width:112px;aspect-ratio:4/5;object-fit:cover}
+.j-row .c-title{font-size:24px;transition:color .3s ease}
+.j-row:hover .c-title,.j-lead:hover .c-title{color:var(--accent)}
+.j-row .txt{display:flex;flex-direction:column;gap:10px;min-width:0}
+.j-more{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 0 0;font-size:11px;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:var(--ash)}
+@media (max-width:960px){ .j-home{grid-template-columns:1fr} }
+@media (max-width:480px){ .j-row{grid-template-columns:minmax(0,1fr) 88px} .j-row img{width:88px} }
+@media (prefers-reduced-motion:reduce){ .j-row .c-title{transition:none} }
 
 /* split blocks */
 .split{display:flex;flex-wrap:wrap;gap:56px 80px;align-items:center}
@@ -707,6 +728,22 @@ const relatedBlock = (slugs, title) => `<section style="border-top:1px solid var
 
 /* ---------- views ---------- */
 const V = {};
+const homeJournal = () => {
+  const [lead, ...rest] = JOURNAL.slice(0, 4);
+  return `<div class="j-home">
+    <a class="card j-lead" href="#/journal/${lead.slug}">
+      <span class="ph">${img(lead.img, "r-1610", "", 1600)}</span>
+      <span class="kicker">${esc(lead.cat)}</span><span class="c-title">${esc(lead.title)}</span>
+      <span class="c-sum">${esc(lead.intro)}</span><span class="meta">${esc(lead.date)}</span>
+    </a>
+    <div>
+      <ul class="j-list">${rest.map(a => `<li><a class="j-row" href="#/journal/${a.slug}">
+        <span class="txt"><span class="kicker">${esc(a.cat)}</span><span class="c-title">${esc(a.title)}</span><span class="meta">${esc(a.date)}</span></span>
+        ${img(a.img, "", "", 400)}</a></li>`).join("")}</ul>
+      <a class="btn btn-line" href="#/journal" style="margin-top:32px">View all articles</a>
+    </div>
+  </div>`;
+};
 V.home = () => `
 <section class="hero" aria-label="LIONS">
   <img src="${im("hero", 2400)}" alt="" class="tone" fetchpriority="high">
@@ -741,7 +778,7 @@ ${img("pillars", "", "", 2400, 'style="width:100%;height:clamp(260px,34vw,520px)
 ${founderBlock()}
 <section aria-labelledby="h-journal"><div class="wrap sec">
   <div class="sec-head"><h2 id="h-journal" class="label">Journal</h2><a class="link-caps" href="#/journal">View all articles ${arrowR}</a></div>
-  <ul class="grid g-3">${JOURNAL.slice(0,3).map(journalCard).join("")}</ul>
+  ${homeJournal()}
 </div></section>
 <section aria-labelledby="h-cases" style="border-top:1px solid var(--rule)"><div class="wrap sec">
   <div class="sec-head"><h2 id="h-cases" class="label">Selected cases</h2><a class="link-caps" href="#/cases">View all cases ${arrowR}</a></div>
@@ -775,7 +812,7 @@ V.talentDetail = slug => {
   </section>
   <section aria-labelledby="sw" style="border-top:1px solid var(--rule)"><div class="wrap sec">
     <h2 id="sw" class="label" style="margin-bottom:48px">Selected work</h2>
-    <ul class="grid g-3">${t.hl.map(hlItem).join("")}</ul>
+    <ul class="grid ${t.hl.length === 4 ? "g-4" : "g-3"}${t.hl.length === 3 ? " trio" : ""}">${t.hl.map(hlItem).join("")}</ul>
   </div></section>
   <section class="light"><div class="wrap sec split" style="justify-content:space-between;align-items:flex-start">
     <div style="flex:1 1 320px;max-width:480px;display:flex;flex-direction:column;gap:20px">
