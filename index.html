@@ -518,10 +518,10 @@ html[data-theme="light"]{color-scheme:light;
   --bone:#1A1918; --paper:#0F0E0D; --mist:#2E2B28; --ash:#4E4943; --dust:#5F5952; --line:#8A8279;
   --stone:#DDD5CB; --graphite:#1A1918; --clay-text:#4E4943; --accent:#8B3A1E; --error:#A23B1C; --focus:#8B3A1E}
 /* black blocks, used sparingly: footer, founder, password page, video player, header over images */
-html[data-theme="light"] .site-footer,html[data-theme="light"] .founder,html[data-theme="light"] .gate,html[data-theme="light"] .vmodal,html[data-theme="light"] .site-header.overlay,html[data-theme="light"] .hero,html[data-theme="light"] .t-hero.full{color-scheme:dark;
+html[data-theme="light"] .site-footer,html[data-theme="light"] .founder,html[data-theme="light"] .gate,html[data-theme="light"] .vmodal,html[data-theme="light"] .site-header.overlay:not(.is-stuck),html[data-theme="light"] .hero,html[data-theme="light"] .t-hero.full{color-scheme:dark;
   --ink:#0F0E0D; --night:#070707; --panel:#1C1B1A; --rule:#262422; --rule-2:#36332F;
   --bone:#E9E4DE; --paper:#F4F0EB; --mist:#D9D2CA; --ash:#B8AFA5; --dust:#A39B92; --line:#6E675F; --accent:#C99A74; --error:#E0A07E; --focus:#C99A74}
-html[data-theme="light"] .site-header.overlay{background:transparent}
+html[data-theme="light"] .site-header.overlay:not(.is-stuck){background:transparent}
 /* rust: the brand colour — full-screen menu and the claim moments */
 html[data-theme="light"] .menu-panel,html[data-theme="light"] .moment{color-scheme:dark;
   --ink:#5A2414; --night:#4A1D10; --panel:#4A1D10; --rule:rgba(244,233,221,.22); --rule-2:rgba(244,233,221,.34);
@@ -545,6 +545,72 @@ html[data-theme="light"] .kicker{color:#8B3A1E}
 html[data-theme="light"] .light .kicker{color:#7A3318}
 html[data-theme="light"] .f-tag{color:#C99A74}
 /*THEME-CSS-END*/
+
+/* ===== footer v2: newsletter row, four columns, full-width wordmark ===== */
+.fx-news{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 80px;align-items:end;padding-top:clamp(56px,6vw,88px);padding-bottom:clamp(40px,5vw,64px);border-bottom:1px solid var(--rule)}
+.fx-news .f-h{margin-bottom:12px}
+.fx-news-title{margin:0;font-size:clamp(24px,2.4vw,32px);font-weight:300;line-height:1.3;color:var(--paper);max-width:20em}
+.fx-news-form{display:flex;flex-direction:column;gap:10px;max-width:560px}
+.fx-lab{margin:0}
+.fx-field{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+.fx-field:focus-within{border-bottom-color:var(--bone)}
+.fx-field input{flex:1;min-width:0;min-height:48px;border:0;background:transparent;color:var(--paper);font-family:inherit;font-size:16px;padding:0 2px}
+.fx-field input::placeholder{color:#9A9189}
+.fx-field input:focus-visible{outline:none}
+.fx-field:has(input[aria-invalid="true"]){border-bottom-color:var(--error)}
+.fx-sub{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 2px;background:none;border:0;color:var(--paper);cursor:pointer;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.fx-sub:hover{color:var(--accent)}
+.fx-main{display:grid;grid-template-columns:minmax(0,4.2fr) minmax(0,2fr) minmax(0,2.4fr) minmax(0,1.8fr);gap:40px 48px;padding-top:clamp(56px,6vw,88px);padding-bottom:clamp(40px,5vw,72px)}
+.fx-brand{display:flex;flex-direction:column;align-items:flex-start;gap:20px;max-width:420px}
+.fx-brand .f-about{margin:0}
+.fx-cta{border-bottom:1px solid var(--line);padding:10px 0;margin-top:4px}
+.fx-soc{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.fx-soc a{display:inline-flex;align-items:center;gap:12px;padding:9px 0;font-size:15px;color:var(--mist);text-decoration:none}
+.fx-soc a svg{color:var(--dust)}
+.fx-soc a:hover,.fx-soc a:hover svg{color:var(--accent)}
+.fx-mark{position:relative;padding-bottom:clamp(20px,2.4vw,36px)}
+.fx-word{display:block;color:var(--paper);text-decoration:none;padding-right:clamp(0px,5vw,72px)}
+.fx-word svg{display:block;width:100%;height:auto;overflow:visible}
+.fx-word text{font-family:var(--sans);font-weight:100;font-size:270px;letter-spacing:-.01em;fill:currentColor}
+.fx-word:hover{color:var(--accent)}
+.fx-up{position:absolute;right:0;bottom:clamp(20px,2.4vw,36px);width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:transparent;color:var(--paper);cursor:pointer}
+.fx-up:hover{border-color:var(--bone)}
+.fx-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 32px;border-top:1px solid var(--rule);padding-top:8px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 16px)}
+.fx-legal{display:flex;flex-wrap:wrap;gap:0 28px;margin-left:auto}
+.fx-bottom a,.fx-bottom button{font-size:13px;color:var(--dust);text-decoration:none;padding:12px 0;background:none;border:0;cursor:pointer;font-family:inherit}
+.fx-bottom a:hover,.fx-bottom button:hover{color:var(--accent)}
+.fx-bottom .f-loba{padding:0}
+@media (max-width:1024px){ .fx-main{grid-template-columns:repeat(3,minmax(0,1fr))} .fx-brand{grid-column:1 / -1;max-width:560px} }
+@media (max-width:760px){ .fx-news{grid-template-columns:minmax(0,1fr)} }
+.fx-sub{flex-shrink:0}
+@media (max-width:600px){ .fx-main{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} .fx-main > :nth-child(3){grid-column:1 / -1;grid-row:3} .fx-bottom{flex-direction:column;align-items:flex-start} .fx-legal{margin-left:0} .fx-word{padding-right:56px} }
+html[data-theme="light"] .fx-field input::placeholder{color:#9A9189}
+
+/* ===== header v2: centred boxed wordmark, split navigation, sticky ===== */
+:root{--hh:76px}
+html{scroll-padding-top:calc(var(--hh) + 16px)}
+.site-header,.site-header.overlay{position:fixed;top:0;left:0;right:0;z-index:40;background:rgba(18,17,16,.78);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(244,240,235,.08);transition:background-color .35s ease,border-color .35s ease}
+.site-header.overlay:not(.is-stuck){background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;border-bottom-color:transparent}
+html[data-theme="light"] .site-header:not(.overlay),html[data-theme="light"] .site-header.is-stuck{background:rgba(241,236,228,.86);border-bottom-color:rgba(26,25,24,.1)}
+body:not(.hdr-over) #app{padding-top:var(--hh)}
+.hx{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:var(--hh);padding-top:0;padding-bottom:0}
+.hx-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:9px 10px 9px 16px;border:1px solid var(--accent);font-size:14px;font-weight:300;letter-spacing:.42em;line-height:1;color:var(--paper);white-space:nowrap}
+.hx-logo:hover{color:var(--accent)}
+.hx-nav{flex:1;display:flex;justify-content:space-between;align-items:center;min-width:0}
+.hx-nav .nav{list-style:none;margin:0;padding:0;display:flex;gap:28px}
+.hx-nav .nav a{font-size:11px;letter-spacing:.2em;padding:14px 0 13px}
+.hx-r{margin-right:8px}
+.hx .head-right{display:flex;align-items:center;gap:6px}
+.hx .head-right .lang{margin-left:4px}
+.hx .menu-btn{display:none}
+.site-header.overlay:not(.is-stuck) .hx-nav .nav a{color:#E9E4DE}
+.site-header.overlay:not(.is-stuck) .hx-nav .nav a[aria-current="page"]{color:#fff}
+@media (max-width:1180px){
+  .hx-nav{display:none}
+  .hx-logo{position:static;transform:none}
+  .hx .menu-btn{display:inline-flex}
+}
+@media (prefers-reduced-motion:reduce){ .site-header{transition:none} }
 
 /* cookie */
 .cookie{position:fixed;left:20px;right:20px;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);z-index:50;max-width:460px;background:var(--panel);border:1px solid var(--rule-2);padding:22px;display:flex;flex-direction:column;gap:16px}
@@ -612,8 +678,20 @@ body.locked > :not(.gate):not(script){display:none !important}
 <a class="skip" href="#app" data-i18n="skip"></a>
 
 <header class="site-header" id="siteHeader">
-  <div class="wrap bar">
-    <a class="wordmark" href="#/" data-i18n-aria="home">LIONS</a>
+  <div class="wrap bar hx">
+    <a class="wordmark hx-logo" href="#/" data-i18n-aria="home">LIONS</a>
+    <nav class="hx-nav" data-i18n-aria="navMain">
+      <ul class="nav hx-l">
+        <li><a href="#/talent" data-key="talent" data-i18n="nav_talent"></a></li>
+        <li><a href="#/culture" data-key="culture" data-i18n="nav_culture"></a></li>
+        <li><a href="#/public-affairs" data-key="public" data-i18n="nav_public"></a></li>
+      </ul>
+      <ul class="nav hx-r">
+        <li><a href="#/approach" data-key="approach" data-i18n="nav_approach"></a></li>
+        <li><a href="#/journal" data-key="journal" data-i18n="nav_journal"></a></li>
+        <li><a href="#/contact" data-key="contact" data-i18n="nav_contact"></a></li>
+      </ul>
+    </nav>
     <div class="head-right">
       <a class="icon-btn" href="#/search" data-key="search" data-i18n-aria="openSearch">
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="6.75" cy="6.75" r="5.25"/><path d="M10.6 10.6L15 15"/></svg>
@@ -666,72 +744,72 @@ body.locked > :not(.gate):not(script){display:none !important}
 
 <footer class="site-footer">
   <div class="wrap">
-    <div class="f-top">
-      <div class="f-brand">
-        <a class="f-word" href="#/" data-i18n-aria="home">LIONS</a>
-        <span class="f-tag" lang="en" data-claim>Talent · Culture · Public Affairs</span>
-        <p class="f-about" data-i18n="f_about"></p>
-        <a class="link-caps" href="#/contact" style="border-bottom:1px solid var(--line);padding-bottom:10px"><span data-i18n="cta_btn"></span> <svg aria-hidden="true" width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 5h13M9 1l4 4-4 4"/></svg></a>
-      </div>
-      <div class="f-cols">
-        <nav aria-labelledby="fh-explore">
-          <h2 class="f-h" id="fh-explore" data-i18n="f_explore"></h2>
-          <ul class="f-list">
-            <li><a href="#/talent" data-i18n="nav_talent"></a></li>
-            <li><a href="#/culture" data-i18n="nav_culture"></a></li>
-            <li><a href="#/public-affairs" data-i18n="nav_public"></a></li>
-            <li><a href="#/approach" data-i18n="nav_approach"></a></li>
-            <li><a href="#/journal" data-i18n="nav_journal"></a></li>
-            <li><a href="#/cases" data-i18n="nav_cases"></a></li>
-            <li><a href="#/contact" data-i18n="nav_contact"></a></li>
-            <li><a href="#/search" data-i18n="nav_search"></a></li>
-          </ul>
-        </nav>
-        <div>
-          <h2 class="f-h" data-i18n="f_contact"></h2>
-          <address class="f-addr">
-            <span><span class="k" data-i18n="d_email"></span><span data-i18n="email_value"></span></span>
-            <span><span class="k" data-i18n="d_phone"></span>+351 [000 000 000]</span>
-            <span><span class="k" data-i18n="d_office"></span><a href="https://www.google.com/maps?q=Rua%20Castilho%20Nr.%2039%2013%C2%BA%20C%201250-068%20-%20LISBOA.%20PORTUGAL." target="_blank" rel="noopener">Rua Castilho 39, 13.º C<br>1250-068 Lisboa, Portugal</a></span>
-          </address>
-        </div>
-        <div>
-          <h2 class="f-h" id="fh-follow" data-i18n="f_follow"></h2>
-<ul class="social" aria-labelledby="fh-follow">
-  <li><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></a></li>
-  <li><a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.2a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14 3c.6 2.8 2.5 4.6 5.2 4.8"/></svg></a></li>
-  <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M7.8 10.2v6.3M7.8 7.4v.1M11.4 16.5v-6.3m0 3.1c0-1.8 1.2-3.1 2.8-3.1s2.6 1.1 2.6 3.1v3.2"/></svg></a></li>
-</ul>
-        </div>
-      </div>
-    </div>
-    <section class="newsletter" aria-labelledby="nl-t">
-      <div class="txt"><h2 id="nl-t" data-i18n="nl_title"></h2><p data-i18n="nl_text"></p></div>
-      <form id="nlForm" novalidate>
-        <label for="nl-email" class="sr-only" data-i18n="nl_label"></label>
-        <div class="nl-row">
+    <section class="fx-news" aria-labelledby="nl-t">
+      <div class="fx-news-txt"><h2 id="nl-t" class="f-h" data-i18n="nl_title"></h2><p class="fx-news-title" data-i18n="nl_text"></p></div>
+      <form id="nlForm" class="fx-news-form" novalidate>
+        <label for="nl-email" class="f-h fx-lab" data-i18n="d_email"></label>
+        <div class="fx-field">
           <input id="nl-email" type="email" autocomplete="email" data-i18n-ph="nl_ph" aria-describedby="nl-err nl-note">
-          <button class="btn btn-line" type="submit" data-i18n="nl_btn"></button>
+          <button type="submit" class="fx-sub"><span data-i18n="nl_btn"></span> <svg aria-hidden="true" width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 5h13M9 1l4 4-4 4"/></svg></button>
         </div>
         <span class="err" id="nl-err" hidden data-i18n="e_email"></span>
         <p class="nl-note" id="nl-note" data-i18n-html="nl_note"></p>
         <p class="nl-note" id="nl-ok" role="status" hidden></p>
       </form>
     </section>
-    <div class="f-bottom">
+
+    <div class="fx-main">
+      <div class="fx-brand">
+        <span class="f-tag" lang="en" data-claim>Talent · Culture · Public Affairs</span>
+        <p class="f-about" data-i18n="f_about"></p>
+        <a class="link-caps fx-cta" href="#/contact"><span data-i18n="cta_btn"></span> <svg aria-hidden="true" width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 5h13M9 1l4 4-4 4"/></svg></a>
+      </div>
+      <nav aria-labelledby="fh-explore">
+        <h2 class="f-h" id="fh-explore" data-i18n="f_explore"></h2>
+        <ul class="f-list">
+          <li><a href="#/talent" data-i18n="nav_talent"></a></li>
+          <li><a href="#/culture" data-i18n="nav_culture"></a></li>
+          <li><a href="#/public-affairs" data-i18n="nav_public"></a></li>
+          <li><a href="#/approach" data-i18n="nav_approach"></a></li>
+          <li><a href="#/journal" data-i18n="nav_journal"></a></li>
+          <li><a href="#/cases" data-i18n="nav_cases"></a></li>
+          <li><a href="#/contact" data-i18n="nav_contact"></a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2 class="f-h" data-i18n="f_contact"></h2>
+        <address class="f-addr">
+          <span><span class="k" data-i18n="d_email"></span><span data-i18n="email_value"></span></span>
+          <span><span class="k" data-i18n="d_phone"></span>+351 [000 000 000]</span>
+          <span><span class="k" data-i18n="d_office"></span><a href="https://www.google.com/maps?q=Rua%20Castilho%20Nr.%2039%2013%C2%BA%20C%201250-068%20-%20LISBOA.%20PORTUGAL." target="_blank" rel="noopener">Rua Castilho 39, 13.º C<br>1250-068 Lisboa, Portugal</a></span>
+        </address>
+      </div>
+      <div>
+        <h2 class="f-h" id="fh-follow" data-i18n="f_follow"></h2>
+        <ul class="fx-soc" aria-labelledby="fh-follow">
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg> Instagram</a></li>
+          <li><a href="https://www.tiktok.com/" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.2a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14 3c.6 2.8 2.5 4.6 5.2 4.8"/></svg> TikTok</a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M7.8 10.2v6.3M7.8 7.4v.1M11.4 16.5v-6.3m0 3.1c0-1.8 1.2-3.1 2.8-3.1s2.6 1.1 2.6 3.1v3.2"/></svg> LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fx-mark">
+      <a class="fx-word" href="#/" data-i18n-aria="home"><svg viewBox="0 0 1000 200" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><text x="0" y="196">LIONS</text></svg></a>
+      <button type="button" class="fx-up" id="backTop" data-i18n-aria="back_top"><svg aria-hidden="true" width="12" height="16" viewBox="0 0 10 14" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 14V1M1 5l4-4 4 4"/></svg></button>
+    </div>
+
+    <div class="fx-bottom">
       <span class="f-copy" data-i18n="f_copy"></span>
-      <div class="f-legal">
+      <div class="fx-legal">
         <a href="#/privacy" data-i18n="privacy"></a>
         <a href="#/terms" data-i18n="terms"></a>
         <button type="button" id="cookieSettings" data-i18n="cookie_settings"></button>
       </div>
-      <div class="f-right">
-        <button type="button" class="f-up" id="backTop"><span data-i18n="back_top"></span> <svg aria-hidden="true" width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="currentColor" stroke-width="1"><path d="M5 14V1M1 5l4-4 4 4"/></svg></button>
-        <a class="f-loba" href="https://www.loba.com/" target="_blank" rel="noopener" title="Developed by LOBA" data-i18n-aria="developed_aria">
-          <span class="f-loba-txt" aria-hidden="true" data-i18n="developed"></span>
-          <span class="f-loba-mark" aria-hidden="true"></span>
-        </a>
-      </div>
+      <a class="f-loba" href="https://www.loba.com/" target="_blank" rel="noopener" title="Developed by LOBA" data-i18n-aria="developed_aria">
+        <span class="f-loba-txt" aria-hidden="true" data-i18n="developed"></span>
+        <span class="f-loba-mark" aria-hidden="true"></span>
+      </a>
     </div>
   </div>
 </footer>
@@ -1656,6 +1734,20 @@ function applyStatic(){
   if (cc) cc.textContent = document.getElementById("cookieOpts").hidden ? t("ck_choose") : t("ck_hide");
 }
 
+/* footer wordmark: scale "LIONS" to the full width with whatever font is loaded */
+function fitWordmark(){
+  const svg = document.querySelector(".fx-word svg"), tx = svg && svg.querySelector("text"); if (!tx) return;
+  tx.setAttribute("font-size", "200"); tx.style.fontSize = "200px";
+  const w = tx.getComputedTextLength(); if (!w) return;
+  const fs = 200 * 1000 / w, cap = fs * 0.72;
+  tx.style.fontSize = fs + "px"; tx.setAttribute("x", "0"); tx.setAttribute("y", String(cap));
+  svg.setAttribute("viewBox", "0 -4 1000 " + (cap + 8).toFixed(1));
+}
+fitWordmark();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWordmark);
+/* header: fixed on every page, transparent over image heroes, translucent once the page scrolls */
+function updateHeader(){ header.classList.toggle("is-stuck", window.scrollY > 8); }
+window.addEventListener("scroll", () => requestAnimationFrame(updateHeader), { passive:true });
 /*THEME-JS-START*/
 /* light / dark version: dark is the default (current version); the choice is remembered */
 const isLight = () => document.documentElement.getAttribute("data-theme") === "light";
@@ -1706,6 +1798,8 @@ function route(){
   app.innerHTML = html;
   document.title = title ? title + " — LIONS" : "LIONS — " + CLAIM;
   header.classList.toggle("overlay", key === "home" || key === "talent" && (!parts[1] || (tBySlug(parts[1]) || {}).hero === "full") || key === "culture" || key === "public");
+  document.body.classList.toggle("hdr-over", header.classList.contains("overlay"));
+  updateHeader();
   if (key === "home") bindCarousel();
   document.querySelectorAll("[data-key]").forEach(a => a.getAttribute("data-key") === key ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
   if (!route.keepFocus) closeMenu(false);
@@ -1896,6 +1990,7 @@ function unlock(){
   gate.remove();
   document.body.classList.remove("locked");
   unlocked = true;
+  fitWordmark();
   showCookie();
   route();
 }
